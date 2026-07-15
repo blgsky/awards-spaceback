@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Spaceback Awards 2026 — Celebrating the boldest, smartest, best-performing social creative built on Spaceback." />
+  <title>The Spaceback Awards 2026</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body>
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+
+  <!-- Fixed cinematic background: video + starfield fallback + overlay -->
+  <div class="cinematic-bg" aria-hidden="true">
+    <div class="starfield"></div>
+    <video
+      id="heroVideo"
+      class="hero-video"
+      muted
+      playsinline
+      preload="auto"
+      disablepictureinpicture
+    >
+      <source src="./video/spaceback-awards-2026-hero.mp4" type="video/mp4" />
+    </video>
+    <div class="bg-overlay"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <!-- Sticky navigation -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand" aria-label="Spaceback — home">
+        <img src="./logo/spaceback.svg" alt="Spaceback" class="nav-logo" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#why">Awards</a>
+        <a href="#categories">Categories</a>
+        <a href="#dates">Dates</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#submit" class="btn btn-primary nav-cta">Submit</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <span id="top"></span>
+
+  <!-- ============================================================= -->
+  <!-- PINNED SCROLL-SCRUB STAGE (Hero → Why → Who → Categories)     -->
+  <!-- ============================================================= -->
+  <div class="scroll-stage" id="scrollStage">
+    <div class="stage-viewport" id="stageViewport">
+
+      <!-- Panel 1 — HERO -->
+      <section class="panel panel-hero" id="hero" data-panel="0" aria-label="Hero">
+        <div class="zone zone-left">
+          <p class="eyebrow">The Spaceback Awards</p>
+          <h1 class="display">The Spaceback<br />Awards <span class="year">2026</span></h1>
+          <p class="lede">Celebrating the boldest, smartest, best-performing social creative built on Spaceback.</p>
+          <div class="cta-row">
+            <a href="#submit" class="btn btn-primary btn-lg">Submit Your Campaign</a>
+          </div>
+          <p class="note">Submissions open Sept 1 — close Oct 31</p>
+        </div>
+        <div class="scroll-hint" aria-hidden="true">
+          <span>Scroll to explore</span>
+          <span class="scroll-hint-line"></span>
+        </div>
+      </section>
+
+      <!-- Panel 2 — WHY -->
+      <section class="panel panel-why" id="why" data-panel="1" aria-label="Why the Spaceback Awards">
+        <div class="zone zone-right">
+          <p class="eyebrow">Why the Awards</p>
+          <h2 class="headline">Made for work that<br />moves the industry.</h2>
+          <p class="lede">Spaceback Awards recognize brands and agencies pushing creative further — sharper formats, smarter execution, and stronger results.</p>
+          <div class="mini-cards">
+            <article class="glass mini-card">
+              <h3>Bold creative</h3>
+              <p>Ideas that stop the scroll and stay with people.</p>
+            </article>
+            <article class="glass mini-card">
+              <h3>Smarter formats</h3>
+              <p>Formats engineered for the platform and the moment.</p>
+            </article>
+            <article class="glass mini-card">
+              <h3>Real performance</h3>
+              <p>Creative that proves itself with measurable impact.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 3 — WHO CAN ENTER -->
+      <section class="panel panel-who" id="who" data-panel="2" aria-label="Who can enter">
+        <div class="zone zone-left">
+          <p class="eyebrow">Who Can Enter</p>
+          <h2 class="headline">If you built it<br />on Spaceback,<br />it belongs here.</h2>
+          <ul class="check-list">
+            <li>Brands and agencies</li>
+            <li>Campaigns using Spaceback</li>
+            <li>CTV, OLV, Display &amp; Pause Ads</li>
+            <li>AI-powered features: CARD, MOTN, FADE, CLIP</li>
+          </ul>
+          <div class="glass eligibility-note">
+            <span class="pill">Eligible dates</span>
+            <p>Jan 1, 2025 — Oct 31, 2026</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Panel 4 — CATEGORIES -->
+      <section class="panel panel-categories" id="categories" data-panel="3" aria-label="Categories">
+        <div class="zone zone-full">
+          <p class="eyebrow center">The Categories</p>
+          <h2 class="headline center">Every kind of great.</h2>
+
+          <div class="cat-groups">
+            <div class="cat-group">
+              <h3 class="cat-group-title">Core Categories</h3>
+              <div class="cat-grid">
+                <span class="cat-chip">Best in Show</span>
+                <span class="cat-chip">Best CTV</span>
+                <span class="cat-chip">Best OLV</span>
+                <span class="cat-chip">Best Display</span>
+                <span class="cat-chip">Best Pause Ad</span>
+                <span class="cat-chip">Best Product Card</span>
+                <span class="cat-chip">Best Use of AI Editing</span>
+                <span class="cat-chip">Most Impact</span>
+                <span class="cat-chip">Best Creative</span>
+              </div>
+            </div>
+            <div class="cat-group">
+              <h3 class="cat-group-title">Industry Categories</h3>
+              <div class="cat-grid">
+                <span class="cat-chip">Retail / E-commerce</span>
+                <span class="cat-chip">Streaming &amp; Entertainment</span>
+                <span class="cat-chip">Auto</span>
+                <span class="cat-chip">Finance &amp; Insurance</span>
+                <span class="cat-chip">CPG</span>
+                <span class="cat-chip">Food &amp; Beverage</span>
+                <span class="cat-chip">Travel &amp; Hospitality</span>
+                <span class="cat-chip">Telecom &amp; Tech</span>
+                <span class="cat-chip">Health &amp; Wellness</span>
+                <span class="cat-chip">QSR / Restaurant</span>
+                <span class="cat-chip">Best Agency Partner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- POST-SCRUB CONTENT (video frozen on final frame behind)       -->
+  <!-- ============================================================= -->
+  <main class="after" id="after">
+
+    <!-- WHAT YOU'LL WIN -->
+    <section class="section" id="win" aria-label="What you'll win">
+      <div class="container reveal">
+        <p class="eyebrow center">The Rewards</p>
+        <h2 class="headline center">What you'll win.</h2>
+        <div class="reward-grid">
+          <article class="glass reward-card featured">
+            <span class="reward-num">01</span>
+            <h3>1M bonus impressions</h3>
+            <p>Amplify your winning campaign with a million impressions on us.</p>
+          </article>
+          <article class="glass reward-card">
+            <span class="reward-num">02</span>
+            <h3>Winners dinner in NYC</h3>
+            <p>An exclusive evening with the best in the business.</p>
+          </article>
+          <article class="glass reward-card">
+            <span class="reward-num">03</span>
+            <h3>Award Winner badge</h3>
+            <p>The official Spaceback Award Winner mark for your work.</p>
+          </article>
+          <article class="glass reward-card">
+            <span class="reward-num">04</span>
+            <h3>Co-branded case study</h3>
+            <p>A featured, co-branded study of your winning campaign.</p>
+          </article>
+          <article class="glass reward-card">
+            <span class="reward-num">05</span>
+            <h3>Press coverage</h3>
+            <p>Earned press that puts your team in the spotlight.</p>
+          </article>
+        </div>
+        <p class="note center">Finalists and runners-up are recognized too.</p>
+      </div>
+    </section>
+
+    <!-- JUDGES + KEY DATES -->
+    <section class="section" id="dates" aria-label="Judges and key dates">
+      <div class="container">
+        <div class="split">
+          <!-- Judges -->
+          <div class="reveal">
+            <p class="eyebrow">The Panel</p>
+            <h2 class="headline">Judges.</h2>
+            <div class="judge-grid">
+              <article class="glass judge-card">
+                <span class="judge-avatar">ES</span>
+                <div><h3>Ellen Savatski</h3><p>Director of Customer Success</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">AS</span>
+                <div><h3>Anthony Saran</h3><p>Director of Client Operations</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">PC</span>
+                <div><h3>Patrick Candela</h3><p>GM, Spaceback</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">GM</span>
+                <div><h3>Gretchen Mosby</h3><p>Team Lead, Customer Success</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">LZ</span>
+                <div><h3>Lilly Zoller</h3><p>Senior Customer Success Manager</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">MA</span>
+                <div><h3>Michael Aragon</h3><p>Customer Success Manager</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">BD</span>
+                <div><h3>Brent Dismuke</h3><p>Senior Customer Success Manager</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">SG</span>
+                <div><h3>Sabrina Goodwin</h3><p>Marketing Manager</p></div>
+              </article>
+              <article class="glass judge-card">
+                <span class="judge-avatar">CT</span>
+                <div><h3>Cory Treffiletti</h3><p>Chief Marketing Officer</p></div>
+              </article>
+              <article class="glass judge-card judge-tba">
+                <span class="judge-avatar">+</span>
+                <div><h3>More judges to be announced</h3><p>External judges &amp; partners</p></div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Key dates -->
+          <div class="reveal">
+            <p class="eyebrow">Timeline</p>
+            <h2 class="headline">Key dates.</h2>
+            <ol class="timeline">
+              <li class="timeline-item">
+                <span class="timeline-dot"></span>
+                <span class="timeline-date">Sept 1</span>
+                <span class="timeline-label">Submissions open</span>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-dot"></span>
+                <span class="timeline-date">Oct 31</span>
+                <span class="timeline-label">Submissions close</span>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-dot"></span>
+                <span class="timeline-date">November</span>
+                <span class="timeline-label">Judging</span>
+              </li>
+              <li class="timeline-item is-final">
+                <span class="timeline-dot"></span>
+                <span class="timeline-date">Dec 3</span>
+                <span class="timeline-label">Winners announced</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW TO ENTER -->
+    <section class="section" id="submit" aria-label="How to enter">
+      <div class="container reveal">
+        <p class="eyebrow center">How to Enter</p>
+        <h2 class="headline center">Three steps to the stage.</h2>
+        <div class="steps">
+          <article class="glass step-card">
+            <span class="step-num">1</span>
+            <h3>Gather your details</h3>
+            <p>Pull together your campaign assets, formats, and results.</p>
+          </article>
+          <article class="glass step-card">
+            <span class="step-num">2</span>
+            <h3>Fill out the form</h3>
+            <p>Complete the submission form for each category you enter.</p>
+          </article>
+          <article class="glass step-card">
+            <span class="step-num">3</span>
+            <h3>Submit before Oct 31</h3>
+            <p>Get your entry in before submissions close.</p>
+          </article>
+        </div>
+        <div class="cta-row center">
+          <a href="#final" class="btn btn-primary btn-lg">Start Your Submission</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-label="Frequently asked questions">
+      <div class="container narrow reveal">
+        <p class="eyebrow center">FAQ</p>
+        <h2 class="headline center">Good questions.</h2>
+        <div class="accordion" id="accordion">
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span>Can I submit to more than one category?</span>
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel"><p>Yes. Enter your campaign in every category where it fits — including both core and industry categories.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span>Do I need to be a current Spaceback client to enter?</span>
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel"><p>Your campaign needs to be built using Spaceback. Brands and agencies who ran eligible Spaceback campaigns can enter.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span>Is there a cost to enter?</span>
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel"><p>No. Entering the Spaceback Awards is free.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span>When is the deadline?</span>
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel"><p>Submissions close October 31, 2026. Winners are announced December 3.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false">
+              <span>What campaign dates are eligible?</span>
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel"><p>Campaigns that ran between January 1, 2025 and October 31, 2026 are eligible.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section section-final" id="final" aria-label="Submit your campaign">
+      <div class="container center reveal">
+        <h2 class="display final-display">Your best work<br />deserves to be seen.</h2>
+        <p class="lede center">Submit your campaign by October 31 for a chance to be recognized as one of the best in the business.</p>
+        <div class="cta-row center">
+          <a href="#top" class="btn btn-primary btn-lg">Submit Your Campaign</a>
+        </div>
+        <p class="note center">Submissions open Sept 1 — close Oct 31</p>
+      </div>
+      <footer class="footer">
+        <span>© 2026 Spaceback</span>
+        <span>The Spaceback Awards</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="./scripts/main.js" defer></script>
+</body>
+</html>

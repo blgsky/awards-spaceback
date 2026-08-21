@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Enter The Spaceback Awards 2026 — submit your campaign." />
+  <title>Submit Your Campaign — The Spaceback Awards 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/main.css" />
+</head>
+<body class="legal-page">
+  <!-- Fixed cinematic background (starfield only, no video) -->
+  <div class="cinematic-bg" aria-hidden="true">
+    <div class="starfield"></div>
+    <div class="bg-overlay"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <!-- Sticky navigation -->
+  <header class="nav is-scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="./index.html#top" class="nav-brand" aria-label="Spaceback — home">
+        <img src="./logo/spaceback.svg" alt="Spaceback" class="nav-logo" />
+      </a>
+      <a href="./index.html" class="btn btn-primary nav-cta">Back to site</a>
+    </div>
+  </header>
+
+  <main class="legal-main">
+    <div class="container narrow">
+      <p class="eyebrow center">Enter the Awards</p>
+      <h1 class="headline center legal-title">Spaceback Awards 2026 Submission</h1>
+      <p class="lede center form-intro">Thanks for your interest in entering the Spaceback Awards! We can't wait to look at all the incredible campaigns and hard work that has gone on to bring Spaceback creatives to life.</p>
+
+      <form class="glass form-card" id="entryForm" novalidate>
+        <!-- Contact -->
+        <div class="form-row">
+          <div class="field">
+            <label for="firstName">First Name <span class="req">*</span></label>
+            <input type="text" id="firstName" name="firstName" autocomplete="given-name" required />
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name <span class="req">*</span></label>
+            <input type="text" id="lastName" name="lastName" autocomplete="family-name" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required />
+        </div>
+
+        <div class="field">
+          <label for="jobTitle">Job Title <span class="req">*</span></label>
+          <input type="text" id="jobTitle" name="jobTitle" autocomplete="organization-title" required />
+        </div>
+
+        <div class="field">
+          <label for="company">Company Name <span class="req">*</span></label>
+          <input type="text" id="company" name="company" autocomplete="organization" required />
+        </div>
+
+        <!-- Company logo -->
+        <div class="field">
+          <label for="logo">Company Logo <span class="req">*</span></label>
+          <div class="file-upload">
+            <input type="file" id="logo" name="logo" accept="image/png,image/jpeg,image/svg+xml,image/webp" required />
+            <label for="logo" class="file-btn">
+              <span class="file-icon" aria-hidden="true">↑</span>
+              <span>Choose file</span>
+            </label>
+            <span class="file-name" id="logoName">No file selected</span>
+          </div>
+          <p class="hint">PNG, JPG, SVG or WEBP — up to 10&nbsp;MB.</p>
+        </div>
+
+        <!-- Categories -->
+        <fieldset class="field">
+          <legend>Select the Category / Categories you wish to enter <span class="req">*</span></legend>
+          <p class="hint">If you enter in 2+ categories, your entry will be automatically eligible for the relevant vertical category.</p>
+          <div class="check-group" id="categoryGroup">
+            <label class="check-opt"><input type="checkbox" name="categories" value="Best CTV" /><span class="box"></span>Best CTV</label>
+            <label class="check-opt"><input type="checkbox" name="categories" value="Best OLV" /><span class="box"></span>Best OLV</label>
+            <label class="check-opt"><input type="checkbox" name="categories" value="Best Display" /><span class="box"></span>Best Display</label>
+            <label class="check-opt"><input type="checkbox" name="categories" value="Best Pause Ad" /><span class="box"></span>Best Pause Ad</label>
+            <label class="check-opt"><input type="checkbox" name="categories" value="Best Use of a Product or End Card" /><span class="box"></span>Best Use of a Product or End Card</label>
+            <label class="check-opt"><input type="checkbox" name="categories" value="Best Use of AI Editing" /><span class="box"></span>Best Use of AI Editing</label>
+            <label class="check-opt"><input type="checkbox" name="categories" value="Most Impact" /><span class="box"></span>Most Impact</label>
+          </div>
+        </fieldset>
+
+        <!-- Campaign flight dates -->
+        <div class="field">
+          <label for="flightDates">Campaign Flight Dates</label>
+          <p class="hint">Reminder: eligible campaigns need to have run this year. They can still be running after entries close, but must have launched between January 1, 2026 and October 31, 2026.</p>
+          <input type="text" id="flightDates" name="flightDates" placeholder="e.g. Mar 3, 2026 – Jun 30, 2026" />
+        </div>
+
+        <!-- Open questions -->
+        <div class="field">
+          <label for="goals">Goals &amp; Strategy <span class="req">*</span></label>
+          <p class="hint">What were the campaign's primary goals? (brand awareness, conversion, engagement, etc.)</p>
+          <textarea id="goals" name="goals" rows="4" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="quant">Quantitative Performance <span class="req">*</span></label>
+          <p class="hint">What key metrics were achieved? Include any benchmarks to demonstrate performance and how it outperformed prior campaigns or industry norms.</p>
+          <textarea id="quant" name="quant" rows="4" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="qual">Qualitative Performance <span class="req">*</span></label>
+          <p class="hint">What impact did this have beyond the numbers (brand lift, client relationship, internal excitement, sales enablement, etc.)?</p>
+          <textarea id="qual" name="qual" rows="4" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="behind">Behind the Scenes <span class="req">*</span></label>
+          <p class="hint">Walk us through how the team conceived and executed this campaign. What was the biggest challenge, and how did you solve it? How did Spaceback support the process?</p>
+          <textarea id="behind" name="behind" rows="5" required></textarea>
+        </div>
+
+        <!-- Consent -->
+        <fieldset class="field">
+          <legend>Consent <span class="req">*</span></legend>
+          <p class="hint">Permission to use campaign details/creative in Spaceback marketing if selected as a finalist or winner.</p>
+          <label class="check-opt"><input type="checkbox" id="consent" name="consent" required /><span class="box"></span>Yes, I consent.</label>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Submit Entry</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <span>© 2026 Spaceback</span>
+      <a class="footer-link" href="./terms.html">Terms &amp; Conditions</a>
+      <a class="footer-link" href="./index.html">The Spaceback Awards</a>
+    </footer>
+  </main>
+
+  <script src="./scripts/form.js" defer></script>
+</body>
+</html>

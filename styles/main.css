@@ -895,3 +895,132 @@ body.no-scrub .scroll-hint { display: none; }
   .scroll-hint-line { animation: none; }
   .hero-video { transition: none; }
 }
+
+/* ============================================================
+   Submission form
+   ============================================================ */
+.form-intro { margin: 12px auto 40px; }
+.form-card {
+  padding: clamp(24px, 4vw, 48px);
+  text-align: left;
+}
+.field { margin: 0 0 26px; }
+fieldset.field { border: 0; padding: 0; min-width: 0; }
+.field > label:not(.check-opt),
+.field legend {
+  display: block;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ink);
+  margin: 0 0 8px;
+  padding: 0;
+}
+.req { color: var(--magenta); }
+.hint {
+  margin: 0 0 12px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--glass-brd);
+  border-radius: 12px;
+  padding: 13px 16px;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--ink-mute); }
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: rgba(142, 38, 255, 0.85);
+  box-shadow: 0 0 0 3px rgba(142, 38, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+.field textarea { resize: vertical; min-height: 112px; line-height: 1.55; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18px; }
+
+/* file upload */
+.file-upload { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.file-upload input[type="file"] {
+  position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; clip: rect(0 0 0 0);
+}
+.file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-brd);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.file-btn:hover { border-color: var(--glass-hi); background: rgba(255, 255, 255, 0.09); transform: translateY(-1px); }
+.file-icon { font-weight: 700; }
+.file-upload input[type="file"]:focus-visible + .file-btn { box-shadow: 0 0 0 3px rgba(142, 38, 255, 0.4); }
+.file-name { color: var(--ink-soft); font-size: 0.9rem; }
+
+/* custom checkboxes (categories + consent) */
+.check-group { display: grid; gap: 4px; margin-top: 4px; }
+.check-opt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 7px 0;
+}
+.check-opt input {
+  position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden;
+}
+.check-opt .box {
+  flex: 0 0 auto;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.check-opt:hover .box { border-color: rgba(255, 255, 255, 0.5); }
+.check-opt input:checked + .box {
+  border-color: transparent;
+  /* crisp, perfectly centred SVG tick over the brand gradient */
+  background:
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='white'%20stroke-width='3.25'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M5%2012.5%2010%2017%2019%207'/%3E%3C/svg%3E") center / 13px 13px no-repeat,
+    linear-gradient(125deg, #8E26FF 0%, #FC0185 100%);
+  box-shadow: 0 2px 12px rgba(224, 79, 251, 0.35);
+}
+.check-opt input:focus-visible + .box { box-shadow: 0 0 0 3px rgba(142, 38, 255, 0.4); }
+
+/* error + status */
+.field.has-error input,
+.field.has-error textarea { border-color: #ff5470; box-shadow: 0 0 0 3px rgba(255, 84, 112, 0.15); }
+.field.has-error .box { border-color: #ff5470; }
+.field-error { color: #ff8199; font-size: 0.82rem; font-weight: 500; margin: 8px 0 0; }
+
+.form-actions { margin-top: 34px; }
+.form-status { margin: 16px 0 0; font-size: 0.92rem; font-weight: 500; }
+.form-status.is-error { color: #ff8199; }
+.form-status.is-success { color: #74f0ad; }
+.form-status.is-pending { color: var(--ink-soft); }
+
+@media (max-width: 560px) {
+  .form-row { grid-template-columns: 1fr; column-gap: 0; }
+}

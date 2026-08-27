@@ -1030,6 +1030,77 @@ fieldset.field { border: 0; padding: 0; min-width: 0; }
 .form-status.is-success { color: #74f0ad; }
 .form-status.is-pending { color: var(--ink-soft); }
 
+/* upload progress */
+.form-progress { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+.form-progress[hidden] { display: none; }
+.form-progress-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.form-progress-fill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: var(--grad-accent);
+  box-shadow: 0 0 12px rgba(224, 79, 251, 0.5);
+  transition: width 0.25s var(--ease);
+}
+.form-progress-pct {
+  min-width: 40px;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* success state — collapses the inputs and shows a centred thank-you */
+.form-success { display: none; }
+.form-success[hidden] { display: none; }
+#entryForm.is-submitted > *:not(.form-success) { display: none; }
+#entryForm.is-submitted .form-success {
+  display: block;
+  text-align: center;
+  padding: clamp(34px, 7vw, 72px) 12px;
+  animation: successIn 0.55s var(--ease) both;
+}
+@keyframes successIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.form-success-badge {
+  display: grid;
+  place-items: center;
+  width: 66px; height: 66px;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  background: var(--grad-accent);
+  box-shadow: 0 10px 34px rgba(224, 79, 251, 0.4);
+}
+.form-success-badge svg { width: 30px; height: 30px; }
+.form-success-title {
+  font-size: clamp(2.1rem, 5.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.form-success-sub {
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.form-success-note { font-size: 0.95rem; color: var(--ink-mute); margin: 0; }
+
 @media (max-width: 560px) {
   .form-row { grid-template-columns: 1fr; column-gap: 0; }
 }

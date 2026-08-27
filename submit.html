@@ -141,7 +141,21 @@
 
         <div class="form-actions">
           <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Submit Entry</button>
+          <div class="form-progress" id="formProgress" hidden>
+            <span class="form-progress-track"><span class="form-progress-fill" id="formProgressFill"></span></span>
+            <span class="form-progress-pct" id="formProgressPct">0%</span>
+          </div>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </div>
+
+        <!-- Success state: replaces the inputs once the entry is sent -->
+        <div class="form-success" id="formSuccess" hidden>
+          <span class="form-success-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg>
+          </span>
+          <h2 class="form-success-title">Thank you<span id="successName"></span></h2>
+          <p class="form-success-sub">Your entry has been received.</p>
+          <p class="form-success-note">We'll be in touch — good luck!</p>
         </div>
       </form>
     </div>

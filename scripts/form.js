@@ -23,6 +23,35 @@
   var submitBtn = document.getElementById("submitBtn");
   var logoInput = document.getElementById("logo");
   var logoName = document.getElementById("logoName");
+  var progressWrap = document.getElementById("formProgress");
+  var progressFill = document.getElementById("formProgressFill");
+  var progressPct = document.getElementById("formProgressPct");
+  var successName = document.getElementById("successName");
+
+  /* ---------- progress bar ---------- */
+  var trickleTimer = null;
+  function showProgress() { progressWrap.hidden = false; setProgress(0); }
+  function hideProgress() { progressWrap.hidden = true; }
+  function setProgress(p) {
+    p = Math.max(0, Math.min(1, p));
+    progressFill.style.width = (p * 100).toFixed(0) + "%";
+    progressPct.textContent = Math.round(p * 100) + "%";
+  }
+  // The network phase can't report real bytes (cross-origin, no CORS), so we
+  // "trickle" smoothly toward 90% and snap to 100% the moment it completes.
+  function startTrickle() {
+    stopTrickle();
+    trickleTimer = setInterval(function () {
+      var cur = parseFloat(progressFill.style.width) / 100 || 0;
+      if (cur < 0.9) setProgress(cur + (0.9 - cur) * 0.12 + 0.004);
+    }, 120);
+  }
+  function stopTrickle() { if (trickleTimer) { clearInterval(trickleTimer); trickleTimer = null; } }
+  function finishProgress() {
+    stopTrickle();
+    setProgress(1);
+    return new Promise(function (r) { setTimeout(r, 350); });
+  }
 
   /* ---------- file picker label ---------- */
   logoInput.addEventListener("change", function () {
@@ -132,11 +161,15 @@
     return ok;
   }
 
-  /* ---------- read the logo as base64 ---------- */
-  function readLogo(file) {
+  /* ---------- read the logo as base64 (with read progress) ---------- */
+  function readLogo(file, onProgress) {
     return new Promise(function (resolve, reject) {
       var reader = new FileReader();
+      reader.onprogress = function (e) {
+        if (onProgress && e.lengthComputable) onProgress(e.loaded / e.total);
+      };
       reader.onload = function () {
+        if (onProgress) onProgress(1);
         var res = String(reader.result);
         var base64 = res.indexOf(",") !== -1 ? res.split(",")[1] : res;
         resolve({ name: file.name, mimeType: file.type || "application/octet-stream", dataBase64: base64 });
@@ -184,23 +217,26 @@
       return;
     }
 
+    var name = val("firstName"); // capture before the form is reset/collapsed
     submitBtn.disabled = true;
     submitBtn.textContent = "Submitting…";
-    setStatus("Uploading your entry…", "pending");
+    showProgress();
 
-    readLogo(logoInput.files[0])
+    // Reading the logo drives 0–35%; the network phase trickles to 90%.
+    readLogo(logoInput.files[0], function (p) { setProgress(p * 0.35); })
       .then(function (logo) {
+        setProgress(0.4);
+        startTrickle();
         var payload = collect(logo);
 
         if (!ENDPOINT) {
-          // Not wired yet — surface a clear message rather than failing.
           console.warn("Form ENDPOINT is not set. Payload:", payload);
           throw new Error("NOT_CONFIGURED");
         }
 
         // text/plain avoids a CORS preflight; Apps Script reads
         // e.postData.contents. Response is opaque under no-cors, so a
-        // resolved fetch is treated as success (Apps Script logs the write).
+        // resolved fetch means the request was delivered.
         return fetch(ENDPOINT, {
           method: "POST",
           mode: "no-cors",
@@ -208,10 +244,11 @@
           body: JSON.stringify(payload),
         });
       })
-      .then(function () {
-        onSuccess();
-      })
+      .then(function () { return finishProgress(); })
+      .then(function () { showSuccess(name); })
       .catch(function (err) {
+        stopTrickle();
+        hideProgress();
         submitBtn.disabled = false;
         submitBtn.textContent = "Submit Entry";
         if (err && err.message === "NOT_CONFIGURED") {
@@ -222,11 +259,12 @@
       });
   });
 
-  function onSuccess() {
-    form.reset();
-    logoName.textContent = "No file selected";
-    submitBtn.textContent = "Submitted ✓";
-    setStatus("Thank you — your entry has been received. We'll be in touch.", "success");
+  function showSuccess(name) {
+    successName.textContent = name ? ", " + name : "";
+    document.getElementById("formSuccess").hidden = false;
+    form.classList.add("is-submitted");
+    // announce for screen readers
+    setStatus("Thank you" + (name ? ", " + name : "") + " — your entry has been received.", "success");
     form.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 })();

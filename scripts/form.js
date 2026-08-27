@@ -12,7 +12,7 @@
      Until it is set, the form validates and shows a friendly
      message instead of sending.
      ---------------------------------------------------------- */
-  var ENDPOINT = ""; // e.g. "https://script.google.com/macros/s/AKfy.../exec"
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbw82cfpEgYYDU-zunxZVN2VjS2_ZctVqBtjV-LzutO59Nfvs_Ae981k1dx6E_tygqgt/exec";
 
   var MAX_LOGO_BYTES = 10 * 1024 * 1024; // 10 MB
 
@@ -71,7 +71,11 @@
     var ok = true;
     var firstBad = null;
 
-    var required = ["firstName", "lastName", "email", "jobTitle", "company", "goals", "quant", "qual", "behind"];
+    // start clean so a re-submit reflects the current state
+    var prior = form.querySelectorAll(".field.has-error");
+    Array.prototype.forEach.call(prior, function (f) { clearError(f); });
+
+    var required = ["firstName", "lastName", "email", "jobTitle", "company", "creativeLinks", "goals", "quant", "qual", "behind"];
     required.forEach(function (id) {
       var el = document.getElementById(id);
       if (!el.value.trim()) {
@@ -86,6 +90,14 @@
       setError(email.closest(".field"), "Please enter a valid email address.");
       ok = false;
       firstBad = firstBad || email;
+    }
+
+    // creative links — require at least one http(s) URL
+    var creative = document.getElementById("creativeLinks");
+    if (creative.value.trim() && !/https?:\/\/\S+/i.test(creative.value)) {
+      setError(creative.closest(".field"), "Please include at least one valid link starting with http.");
+      ok = false;
+      firstBad = firstBad || creative;
     }
 
     // logo
@@ -146,6 +158,7 @@
         function (c) { return c.value; }
       ),
       flightDates: val("flightDates"),
+      creativeLinks: val("creativeLinks"),
       goals: val("goals"),
       quant: val("quant"),
       qual: val("qual"),

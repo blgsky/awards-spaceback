@@ -25,7 +25,7 @@ var DRIVE_FOLDER_ID = "PASTE_YOUR_DRIVE_FOLDER_ID_HERE";
 
 var HEADERS = [
   "Submitted At", "First Name", "Last Name", "Email", "Job Title",
-  "Company Name", "Categories", "Campaign Flight Dates",
+  "Company Name", "Categories", "Campaign Flight Dates", "Creative Link(s)",
   "Goals & Strategy", "Quantitative Performance", "Qualitative Performance",
   "Behind the Scenes", "Consent", "Company Logo",
 ];
@@ -64,6 +64,7 @@ function doPost(e) {
       data.company || "",
       (data.categories || []).join(", "),
       data.flightDates || "",
+      data.creativeLinks || "",
       data.goals || "",
       data.quant || "",
       data.qual || "",

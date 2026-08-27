@@ -37,14 +37,27 @@
     progressFill.style.width = (p * 100).toFixed(0) + "%";
     progressPct.textContent = Math.round(p * 100) + "%";
   }
-  // The network phase can't report real bytes (cross-origin, no CORS), so we
-  // "trickle" smoothly toward 90% and snap to 100% the moment it completes.
+  // The network phase can't report real bytes (cross-origin, no CORS) and a
+  // full upload takes ~30s, so we pace a smooth, always-moving "fake" fill
+  // that eases from ~40% up toward ~96% over roughly 30s. It never stalls
+  // (a small floor nudge keeps it visibly moving) and snaps to 100% the
+  // instant the request actually completes.
+  var TRICKLE_SECONDS = 30;
   function startTrickle() {
     stopTrickle();
+    var startAt = Date.now();
+    var base = parseFloat(progressFill.style.width) / 100 || 0.4;
     trickleTimer = setInterval(function () {
-      var cur = parseFloat(progressFill.style.width) / 100 || 0;
-      if (cur < 0.9) setProgress(cur + (0.9 - cur) * 0.12 + 0.004);
-    }, 120);
+      var elapsed = (Date.now() - startAt) / 1000;
+      // ease-out over TRICKLE_SECONDS (fast start, gentle finish)
+      var t = Math.min(elapsed / TRICKLE_SECONDS, 1);
+      var eased = 1 - Math.pow(1 - t, 1.6);
+      var target = base + (0.96 - base) * eased;
+      var cur = parseFloat(progressFill.style.width) / 100 || base;
+      // always advance a hair so it can never look frozen
+      var next = Math.max(target, cur + 0.0016);
+      setProgress(Math.min(next, 0.97));
+    }, 100);
   }
   function stopTrickle() { if (trickleTimer) { clearInterval(trickleTimer); trickleTimer = null; } }
   function finishProgress() {

@@ -340,8 +340,8 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .scroll-stage {
   position: relative;
-  /* height set by JS via --stage-vh; fallback below */
-  height: 480vh;
+  /* 3 pinned panels (Hero → Why → Who); keeps the scrub pacing */
+  height: 360vh;
 }
 .stage-viewport {
   position: sticky;
@@ -623,6 +623,67 @@ a { color: inherit; text-decoration: none; }
   width: 3px;
   background: var(--grad-accent);
 }
+/* judges span the full width on the winners page */
+.judge-grid.judges-full {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   Winners
+   ============================================================ */
+.winner-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 48px;
+  text-align: left;
+}
+.winner-list { display: grid; gap: 14px; margin-top: 18px; }
+.winner-card {
+  padding: 20px 22px;
+  transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.winner-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--glass-hi);
+  box-shadow: 0 16px 44px rgba(142, 38, 255, 0.24);
+}
+.winner-cat {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: transparent;
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.winner-brand {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.winner-agency { margin: 3px 0 0; font-size: 0.9rem; color: var(--ink-soft); }
+.winner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+  transition: gap 0.25s var(--ease), color 0.25s var(--ease);
+}
+.winner-link span { transition: transform 0.25s var(--ease); }
+.winner-link:hover { color: #fff; gap: 10px; }
+.winner-link:hover span { transform: translateX(3px); }
 
 /* Timeline */
 .timeline {
@@ -840,9 +901,10 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 @media (max-width: 900px) {
   .cat-groups { grid-template-columns: 1fr; gap: 30px; }
+  .winner-groups { grid-template-columns: 1fr; gap: 32px; }
   .split { grid-template-columns: 1fr; gap: 44px; }
   .steps { grid-template-columns: 1fr; }
-  .judge-grid { grid-template-columns: 1fr; }
+  .judge-grid, .judge-grid.judges-full { grid-template-columns: 1fr; }
   .zone { max-width: 100%; }
   .panel { padding-left: 24px; padding-right: 24px; }
 }

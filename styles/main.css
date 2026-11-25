@@ -340,8 +340,8 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .scroll-stage {
   position: relative;
-  /* 3 pinned panels (Hero → Why → Who); keeps the scrub pacing */
-  height: 360vh;
+  /* 2 pinned panels (Hero → Why); keeps the scrub pacing */
+  height: 240vh;
 }
 .stage-viewport {
   position: sticky;
@@ -623,6 +623,17 @@ a { color: inherit; text-decoration: none; }
   width: 3px;
   background: var(--grad-accent);
 }
+/* company wordmark/label above each judge (placeholder for a real logo file) */
+.judge-company {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.judge-card.no-avatar .judge-company + h3 { margin-top: 0; }
 /* judges span the full width on the winners page */
 .judge-grid.judges-full {
   grid-template-columns: repeat(3, 1fr);
